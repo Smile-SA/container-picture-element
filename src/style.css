@@ -46,7 +46,7 @@ body {
 }
 
 /* Order is important */
-.picture-1 .min-473 {
+/* .picture-1 .min-473 {
   display: none;
 }
 .picture-1 .min-682 {
@@ -67,10 +67,10 @@ body {
   .picture-1 :not(.min-682) {
     display: none;
   }
-}
+} */
 
 /* Order is important */
-.picture-2 .max-472 {
+/* .picture-2 .max-472 {
   display: none;
 }
 .picture-2 .max-681 {
@@ -91,4 +91,4 @@ body {
   .picture-2 :not(.max-472) {
     display: none;
   }
-}
+} */

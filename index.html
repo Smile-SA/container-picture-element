@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link href="/src/style.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
   </head>
   <body>
     <div>
       <h1 class="center">Picture with media attribute</h1>
-      <div>
+      <!-- <div>
         <div class="w-100">
           <picture>
             <source
@@ -94,8 +95,94 @@
           </picture>
         </div>
       </div>
+    </div> -->
+      <div>
+        <div class="w-100">
+          <picture>
+            <source
+              srcset="
+                https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=792
+              "
+              container="(min-width: 682px)"
+              width="682"
+              height="792"
+            />
+            <source
+              srcset="
+                https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=550
+              "
+              container="(min-width: 473px)"
+              width="473"
+              height="550"
+            />
+            <img
+              alt="TNF"
+              loading="lazy"
+              src="https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=300"
+              width="258"
+              height="300"
+            />
+          </picture>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="w-40">
+          <picture>
+            <source
+              srcset="
+                https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=792
+              "
+              container="(min-width: 682px)"
+              width="682"
+              height="792"
+            />
+            <source
+              srcset="
+                https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=550
+              "
+              container="(min-width: 473px)"
+              width="473"
+              height="550"
+            />
+            <img
+              alt="TNF"
+              loading="lazy"
+              src="https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=300"
+              width="258"
+              height="300"
+            />
+          </picture>
+        </div>
+        <div class="w-60">
+          <picture>
+            <source
+              srcset="
+                https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=792
+              "
+              container="(min-width: 682px)"
+              width="682"
+              height="792"
+            />
+            <source
+              srcset="
+                https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=550
+              "
+              container="(min-width: 473px)"
+              width="473"
+              height="550"
+            />
+            <img
+              alt="TNF"
+              loading="lazy"
+              src="https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=300"
+              width="258"
+              height="300"
+            />
+          </picture>
+        </div>
+      </div>
     </div>
-    <div>
+    <!-- <div>
       <h1 class="center">Container queries (min-width)</h1>
       <div>
         <div class="w-100">
@@ -194,8 +281,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div></div>
+    </div> -->
+    <!-- <div>
       <h1 class="center">Container queries (max-width)</h1>
       <div>
         <div class="w-100">
@@ -294,7 +381,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
