@@ -1,60 +1,68 @@
-function insertStyle(picture: HTMLPictureElement, containers: string[]) {
-  const id = `pcp-${crypto.randomUUID()}`;
-  picture.setAttribute("id", id);
+class ContainerPicture extends HTMLElement {
+  constructor() {
+    super();
+  }
 
-  let css = "";
-  for (const container of containers) {
-    css += `
-#${id} [container="${container}"] {
+  connectedCallback() {
+    const sources = [...this.querySelectorAll("source")];
+    const shadow = this.attachShadow({ mode: "open" });
+
+    this.insertStyle(shadow, sources);
+    for (const i in sources) {
+      this.transformSource(shadow, sources[i]);
+    }
+  }
+
+  insertStyle(root: ShadowRoot, sources: HTMLSourceElement[]) {
+    const containers = sources
+      .map((el) => el.getAttribute("container"))
+      .filter((x) => x);
+    const srcSets = sources.map((el) => el.getAttribute("srcset"));
+
+    let css = `
+:host {
+  display: inline-block;
+}`;
+    for (const src of srcSets) {
+      css += `
+[srcset="${src}"] {
+  background: url(${src})
+}`;
+    }
+    for (const container of containers) {
+      css += `
+[container="${container}"] {
   display: none;
 }`;
-  }
-  for (let i = containers.length - 1; i >= 0; i--) {
-    const container = containers[i];
-    css += `
+    }
+    for (let i = containers.length - 1; i >= 0; i--) {
+      const container = containers[i];
+      css += `
 @container ${container} {
-  #${id} [container="${container}"] {
-    display: block;
+  [container="${container}"] {
+    display: inline-block;
   }
-  #${id} :not([container="${container}"]) {
+  :not([container="${container}"]) {
     display: none;
   }
 }`;
+    }
+
+    const style = document.createElement("style");
+    style.setAttribute("type", "text/css");
+    style.appendChild(document.createTextNode(css));
+    root.appendChild(style);
   }
 
-  const head = document.head;
-  const style = document.createElement("style");
-  style.setAttribute("type", "text/css");
-  style.appendChild(document.createTextNode(css));
-  head.appendChild(style);
-}
-
-function transformSource(
-  picture: HTMLPictureElement,
-  source: HTMLSourceElement,
-) {
-  const attributes = source.attributes;
-  source.remove();
-  const image = document.createElement("img");
-  picture.appendChild(image);
-  // image.setAttribute('loading', 'lazy')
-  // image.setAttribute('alt', 'TNF')
-  for (const attr of attributes) {
-    image.setAttribute(attr.name, attr.value);
-  }
-}
-
-function pictureContainerPolyfill(root: Element | Document = document) {
-  for (const picture of [...root.querySelectorAll("picture")]) {
-    const sources = [...picture.querySelectorAll("source")];
-    const containers = sources.map((el) => el.getAttribute("container"));
-    if (!containers.some((container) => !container)) {
-      for (const i in sources) {
-        transformSource(picture, sources[i]);
-      }
-      insertStyle(picture, containers as string[]);
+  transformSource(root: ShadowRoot, source: HTMLSourceElement) {
+    const attributes = source.attributes;
+    source.remove();
+    const object = document.createElement("object");
+    root.appendChild(object);
+    for (const attr of attributes) {
+      object.setAttribute(attr.name, attr.value);
     }
   }
 }
 
-pictureContainerPolyfill();
+customElements.define("container-picture", ContainerPicture);
