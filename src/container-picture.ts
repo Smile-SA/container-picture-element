@@ -17,16 +17,29 @@ class ContainerPicture extends HTMLElement {
     });
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     this.updateStyle();
     this.transformSource();
   }
 
-  updateStyle() {
-    const images = [...this.querySelectorAll("source, img")] as (
-      | HTMLSourceElement
-      | HTMLImageElement
-    )[];
+  transformSource(): void {
+    for (const div of this.divs) {
+      div.remove();
+    }
+    const images = this.querySelectorAll<HTMLImageElement | HTMLSourceElement>(
+      "source, img",
+    );
+    for (let i = 0; i < images.length; i++) {
+      const div = document.createElement("div");
+      this.shadowRoot?.appendChild(div);
+      this.divs.push(div);
+    }
+  }
+
+  updateStyle(): void {
+    const images = this.querySelectorAll<HTMLImageElement | HTMLSourceElement>(
+      "source, img",
+    );
 
     let css = `
 :host {
@@ -66,21 +79,6 @@ slot {
     const style = this.shadowRoot?.querySelector("style");
     if (style) {
       style.textContent = css;
-    }
-  }
-
-  transformSource() {
-    for (const div of this.divs) {
-      div.remove();
-    }
-    const images = [...this.querySelectorAll("source, img")] as (
-      | HTMLSourceElement
-      | HTMLImageElement
-    )[];
-    for (let i = 0; i < images.length; i++) {
-      const div = document.createElement("div");
-      this.shadowRoot?.appendChild(div);
-      this.divs.push(div);
     }
   }
 }

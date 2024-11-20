@@ -1,15 +1,82 @@
 {
-  "name": "picture-container-polyfill",
-  "private": true,
+  "name": "container-picture-element",
   "version": "0.0.0",
+  "description": "HTML picture custom element that works with container queries",
+  "license": "MIT",
+  "homepage": "https://github.com/Smile-SA/container-picture-element",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Smile-SA/container-picture-element.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Smile-SA/container-picture-element/issues"
+  },
+  "keywords": [
+    "picture",
+    "container",
+    "custom-element",
+    "web-component"
+  ],
+  "author": {
+    "name": "Tony Cabaye",
+    "email": "tonai59+github@gmail.com",
+    "url": "https://github.com/tonai"
+  },
   "type": "module",
+  "main": "./dist/container-picture.js",
+  "types": "./dist/container-picture.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "import": "./dist/container-picture.js",
+        "types": "./dist/container-picture.d.ts"
+      },
+      "require": {
+        "require": "./dist/container-picture.cjs",
+        "types": "./dist/container-picture.d.cts"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "tsup src/container-picture.ts --format esm,cjs,iife --dts --clean --sourcemap",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint --ignore-path .gitignore . && tsc --noEmit",
+    "lint:fix": "eslint --ignore-path .gitignore --fix . && tsc --noEmit",
+    "format": "prettier --write --ignore-unknown .",
+    "prepare": "husky",
+    "check-exports": "attw --pack ."
   },
   "devDependencies": {
-    "typescript": "^5.5.3",
-    "vite": "^5.4.8"
+    "@arethetypeswrong/cli": "^0.17.0",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-smile": "^0.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "tsup": "^8.3.5",
+    "typescript": "~5.5.4",
+    "vite": "^5.4.11"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown",
+    "*.{js,ts}": "eslint --ignore-path .gitignore"
   }
 }
