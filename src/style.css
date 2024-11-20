@@ -45,50 +45,40 @@ body {
   margin: 20px 0;
 }
 
-/* Order is important */
-/* .picture-1 .min-473 {
+/*.bg {
+  background: url(https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=300);
+  width: 258px;
+  height: 300px;
+}
+.bg-473 {
+  background: url(https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=550);
+  width: 473px;
+  height: 550px;
+}
+.bg-682 {
+  background: url(https://images.thenorthface.com/is/image/TheNorthFace/NF0A4ALM_BQW_hero?hei=792);
+  width: 682px;
+  height: 792px;
+}
+.bg-473 {
   display: none;
 }
-.picture-1 .min-682 {
+.bg-682 {
   display: none;
 }
 @container (min-width: 473px) {
-  .picture-1 .min-473 {
+  .bg-473 {
     display: block;
   }
-  .picture-1 :not(.min-473) {
+  :not(.bg-473) {
     display: none;
   }
 }
 @container (min-width: 682px) {
-  .picture-1 .min-682 {
+  .bg-682 {
     display: block;
   }
-  .picture-1 :not(.min-682) {
+  :not(.bg-682) {
     display: none;
   }
-} */
-
-/* Order is important */
-/* .picture-2 .max-472 {
-  display: none;
-}
-.picture-2 .max-681 {
-  display: none;
-}
-@container (max-width: 681px) {
-  .picture-2 .max-681 {
-    display: block;
-  }
-  .picture-2 :not(.max-681) {
-    display: none;
-  }
-}
-@container (max-width: 472px) {
-  .picture-2 .max-472 {
-    display: block;
-  }
-  .picture-2 :not(.max-472) {
-    display: none;
-  }
-} */
+}*/
