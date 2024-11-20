@@ -48,7 +48,7 @@ class ContainerPicture extends HTMLElement {
 slot {
   display: none;
 }`;
-    for (const i in images) {
+    for (let i = 0; i < images.length; i++) {
       const image = images[i];
       const container = image.getAttribute("container");
       css += `
